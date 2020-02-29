@@ -28,8 +28,13 @@ export const Button100 = () => (
     <NeomorphButton size="100px" color="#ddd"></NeomorphButton>
   </BackPlate>
 );
+export const ButtonBlue100 = () => (
+  <BackPlate color="#ddd">
+    <NeomorphButton size="100px" color="#ddd" ringHoverColor="#00d5ffb8"></NeomorphButton>
+  </BackPlate>
+);
 export const ButtonPink = () => (
   <BackPlate color="#eee">
-    <NeomorphButton size="100px" color="#eee" ringcolor="deeppink"></NeomorphButton>
+    <NeomorphButton size="100px" color="#eee" ringcolor="deeppink" ringClickColor="#00d5ffb8"></NeomorphButton>
   </BackPlate>
 );

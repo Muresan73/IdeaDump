@@ -4,6 +4,8 @@ import styled from 'styled-components';
 interface SizeProp {
   size: string;
   color: string;
+  ringClickColor?: string;
+  ringHoverColor?: string;
   ringcolor?: string;
 }
 
@@ -35,9 +37,7 @@ const InnerButton = styled.button`
 
 const Ring = styled.div`
   transition: background 0.3s;
-  :hover > & {
-    background: #00d5ffb8;
-  }
+
   box-sizing: border-box;
   width: 70%;
   height: 70%;
@@ -47,15 +47,23 @@ const Ring = styled.div`
   border-radius: 50%;
   box-shadow: inset 1px 1px 10px #0003;
   ${InnerButton}:active + & {
-    background: ${(props: any) => props.color || 'inherit'};
+    background: ${(props: any) => props.ringClickColor};
   }
-  pointer-events: none;
+  ${InnerButton}:hover + & {
+    background: ${(props: SizeProp) => props.ringHoverColor};
+  }
+  background: ${(props: SizeProp) => props.ringcolor};
+
   z-index: 0;
 `;
 
 export const NeomorphButton = (props: SizeProp) => (
   <OuterButton size={props.size} color={props.color}>
     <InnerButton></InnerButton>
-    <Ring color={props.ringcolor}></Ring>
+    <Ring
+      ringcolor={props.ringcolor}
+      ringClickColor={props.ringClickColor}
+      ringHoverColor={props.ringHoverColor}
+    ></Ring>
   </OuterButton>
 );
