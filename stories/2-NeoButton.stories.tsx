@@ -4,6 +4,7 @@ import { NeomorphButton } from '../src/components/neomorphButton';
 import { addons } from '@storybook/addons';
 import { themes } from '@storybook/theming';
 import styled from 'styled-components';
+import { NeomorphSwitch } from '../src/components/neomorphSwitch';
 
 addons.setConfig({
   theme: themes.dark
@@ -35,6 +36,11 @@ export const ButtonBlue100 = () => (
 );
 export const ButtonPink = () => (
   <BackPlate color="#eee">
-    <NeomorphButton size="100px" color="#eee" ringcolor="deeppink" ringClickColor="#00d5ffb8"></NeomorphButton>
+    <NeomorphButton size="100px" color="#eee" ringcolor="deeppink" ringClickColor="greenyellow"></NeomorphButton>
+  </BackPlate>
+);
+export const Switch = () => (
+  <BackPlate color="#eee">
+    <NeomorphSwitch></NeomorphSwitch>
   </BackPlate>
 );

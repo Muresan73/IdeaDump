@@ -7,9 +7,10 @@ interface SizeProp {
   ringClickColor?: string;
   ringHoverColor?: string;
   ringcolor?: string;
+  onClick?: (_?: unknown) => void;
 }
 
-const OuterButton = styled.div`
+const OuterPart = styled.div`
   width: ${(props: SizeProp) => props.size};
   height: ${(props: SizeProp) => props.size};
   background: ${(props: SizeProp) => props.color};
@@ -36,7 +37,7 @@ const InnerButton = styled.button`
 `;
 
 const Ring = styled.div`
-  transition: background 0.3s;
+  transition: background 0.3s ease-out;
 
   box-sizing: border-box;
   width: 70%;
@@ -58,12 +59,12 @@ const Ring = styled.div`
 `;
 
 export const NeomorphButton = (props: SizeProp) => (
-  <OuterButton size={props.size} color={props.color}>
-    <InnerButton></InnerButton>
+  <OuterPart size={props.size} color={props.color}>
+    <InnerButton onClick={props.onClick}></InnerButton>
     <Ring
       ringcolor={props.ringcolor}
       ringClickColor={props.ringClickColor}
       ringHoverColor={props.ringHoverColor}
     ></Ring>
-  </OuterButton>
+  </OuterPart>
 );

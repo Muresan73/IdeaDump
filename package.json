@@ -1,12 +1,14 @@
 {
-  "name": "IdeaDump",
+  "name": "VisualDump",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "start": "webpack-dev-server --content-base ./dist --hot --inline --colors --port 3000 --open",
+    "build": "webpack --config webpack.config.js --watch"
   },
   "keywords": [],
   "author": "",
@@ -14,6 +16,7 @@
   "dependencies": {
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
+    "rxjs": "^6.5.4",
     "styled-components": "^5.0.1"
   },
   "devDependencies": {
@@ -26,10 +29,13 @@
     "@types/react-dom": "^16.9.5",
     "@types/styled-components": "^5.0.1",
     "babel-loader": "^8.0.6",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
     "source-map-loader": "^0.2.4",
     "ts-loader": "^6.2.1",
     "typescript": "^3.8.3",
     "webpack": "^4.41.6",
-    "webpack-cli": "^3.3.11"
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
   }
 }
