@@ -1,6 +1,6 @@
 {
-    "editor.formatOnSave": true,
-    "[ts,tsx]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
+  "editor.formatOnSave": false,
+  "[ts,tsx]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }

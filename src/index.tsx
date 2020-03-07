@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import { Hello } from './components/Hello';
+import { PipePiperDemo } from './components/pipePiperDemo';
 
-ReactDOM.render(<Hello />, document.getElementById('root'));
+ReactDOM.render(<PipePiperDemo />, document.getElementById('root'));
