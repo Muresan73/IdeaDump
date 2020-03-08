@@ -26,7 +26,7 @@ function usePiper<State>(initialState: State, pipeLine: Pipe<State>[]): [State, 
     const sub = zip(
       plumbing<State>(pipeLine)(subject.current),
       latestStateSubject.current
-    ).subscribe(([[_, newState], currentState]) => setState(Object.assign({}, currentState, newState)));
+    ).subscribe(([[_, newState], currentState]) => setState(state => Object.assign({}, state, newState)));
     return () => sub.unsubscribe();
   }, []);
 

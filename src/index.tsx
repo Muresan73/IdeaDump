@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import { PipePiperDemo } from './components/pipePiperDemo';
+import { ReferencedDispached } from './state-management/metaRefActionDispatcher';
 
-ReactDOM.render(<PipePiperDemo />, document.getElementById('root'));
+ReactDOM.render(<ReferencedDispached />, document.getElementById('root'));
