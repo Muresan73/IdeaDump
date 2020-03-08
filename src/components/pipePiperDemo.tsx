@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { useState, useEffect, useRef, useCallback } from 'react';
-import { Subject, Observable, merge } from 'rxjs';
+import { useState, useEffect, useRef } from 'react';
+import { Subject, Observable, merge, zip } from 'rxjs';
 import { tap, map, delay, filter } from 'rxjs/operators';
 
 type Action = 'click1' | 'click2';
 type Sausage<State> = Observable<[Action, State]>;
-type Pipe<State> = (emitter: Sausage<State>) => Sausage<State>;
+type Pipe<State> = (emitter: Sausage<State>) => Sausage<Partial<State>>;
 
 // type Function1<T>=(arg: T) => T;
 // function pipeOperator<T>(...fns: (Function1<T>)[]): Function1<T> {
@@ -16,15 +16,26 @@ const plumbing = <State,>(pipes: Pipe<State>[]): Pipe<State> => (seed: Sausage<S
   merge(...pipes.map(pipe => pipe(seed)));
 
 function usePiper<State>(initialState: State, pipeLine: Pipe<State>[]): [State, (action: Action) => void] {
-  const [state, setState] = useState(initialState);
+  const [currentState, setState] = useState(initialState);
+
   const subject = useRef(new Subject<[Action, State]>());
+  const latestStateSubject = useRef(new Subject<State>());
 
   useEffect(() => {
-    const sub = plumbing<State>(pipeLine)(subject.current).subscribe(([_, state]) => setState(state));
-    return () => { sub.unsubscribe(); };
+    latestStateSubject.current.subscribe(console.log);
+    const sub = zip(
+      plumbing<State>(pipeLine)(subject.current),
+      latestStateSubject.current
+    ).subscribe(([[_, newState], currentState]) => setState(Object.assign({}, currentState, newState)));
+    return () => sub.unsubscribe();
   }, []);
 
-  return [state, action => subject.current.next([action, state])];
+  useEffect(() => {
+    console.log('next');
+    latestStateSubject.current.next(currentState);
+  }, [currentState]);
+
+  return [currentState, action => subject.current.next([action, currentState])];
 }
 
 // --------------   Component   --------------
@@ -34,17 +45,17 @@ const clickPipes: Pipe<typeof initalState>[] = [
   emitter => {
     return emitter.pipe(
       filter(([action, _]) => action === 'click1'),
-      tap(x => console.log('1:', x)),
       delay(1000),
-      map(([action, state]) => [action, { ...state, c1: !state.c1 }])
+      tap(x => console.log('1:', x)),
+      map(([action, state]) => [action, { c1: !state.c1 }])
     );
   },
   emitter => {
     return emitter.pipe(
       filter(x => x[0] === 'click2'),
-      tap(x => console.log('2:', x)),
       delay(1000),
-      map(([action, state]) => [action, { ...state, c2: !state.c2 }])
+      tap(x => console.log('2:', x)),
+      map(([action, state]) => [action, { c2: !state.c2 }])
     );
   }
 ];
