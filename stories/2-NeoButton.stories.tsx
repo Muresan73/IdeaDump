@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { Hello } from '../src/components/Hello';
-import { NeomorphButton } from '../src/components/neomorphButton';
+import { Hello } from '../src/visual-components/Hello';
+import { NeomorphButton } from '../src/visual-components/neomorphButton';
 import { addons } from '@storybook/addons';
 import { themes } from '@storybook/theming';
 import styled from 'styled-components';
-import { NeomorphSwitch } from '../src/components/neomorphSwitch';
+import { NeomorphSwitch } from '../src/visual-components/neomorphSwitch';
 
 addons.setConfig({
   theme: themes.dark
