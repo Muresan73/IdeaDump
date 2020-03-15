@@ -1,5 +1,6 @@
 import { Observable, BehaviorSubject, isObservable, Subject } from 'rxjs';
-import { first, map } from 'rxjs/operators';
+import { first, map, startWith, pairwise } from 'rxjs/operators';
+import './index.scss';
 
 const React = {
   createElement: (tag, props, ...children) => {
@@ -8,18 +9,26 @@ const React = {
   }
 };
 
-const render = (reactElement, container: Node) => {
+const render = (reactElement, container?: Node) => {
   if (['string', 'number'].includes(typeof reactElement)) {
     const newTextElement = document.createTextNode(reactElement);
-
-    container.appendChild(newTextElement);
+    container && container.appendChild(newTextElement);
     return newTextElement;
   }
 
   if (isObservable(reactElement)) {
-    const subject = new Subject();
-    subject.subscribe(console.log);
-    reactElement.subscribe(element => subject.next(render(element, container)));
+    const subject = new Subject<Element>();
+    subject.pipe(startWith(null), pairwise()).subscribe(([prev, current]) => {
+      if (current && prev) {
+        prev.replaceWith(current);
+      } else {
+        if (prev) prev.remove();
+        if (current) container.appendChild(current);
+      }
+    });
+    reactElement.subscribe(element => {
+      subject.next(render(element));
+    });
     return;
   }
 
@@ -34,7 +43,7 @@ const render = (reactElement, container: Node) => {
   if (reactElement.props.children) {
     reactElement.props.children.forEach(child => render(child, newDOMelement));
   }
-  container.appendChild(newDOMelement);
+  container && container.appendChild(newDOMelement);
   return newDOMelement;
 };
 
@@ -58,7 +67,8 @@ const App = () => {
       {state.pipe(
         map(
           state =>
-            state > 5 && (
+            state > 5 &&
+            state < 10 && (
               <div>
                 Its bigger than 5 man!
                 <div>

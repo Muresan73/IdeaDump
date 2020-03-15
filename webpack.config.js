@@ -42,6 +42,17 @@ module.exports = {
             loader: 'html-loader'
           }
         ]
+      },
+      {
+        test: /\.s[ac]ss$/i,
+        use: [
+          // Creates `style` nodes from JS strings
+          'style-loader',
+          // Translates CSS into CommonJS
+          'css-loader',
+          // Compiles Sass to CSS
+          'sass-loader'
+        ]
       }
     ]
   },
@@ -63,12 +74,12 @@ module.exports = {
     new HtmlWebpackPlugin({
       chunks: ['app'],
       filename: 'index.html',
-      template: "src/index.html",
+      template: 'src/index.html'
     }),
     new HtmlWebpackPlugin({
       chunks: ['poor'],
       filename: 'poor.html',
-      template: "src/poor-mans-react/index.html",
+      template: 'src/poor-mans-react/index.html'
     }),
     new Visualizer()
   ],
