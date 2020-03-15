@@ -1,5 +1,5 @@
 import { Observable, BehaviorSubject, isObservable, Subject } from 'rxjs';
-import { first, map, startWith, pairwise } from 'rxjs/operators';
+import { first, map, startWith, pairwise, filter, tap } from 'rxjs/operators';
 import './index.scss';
 
 const React = {
@@ -18,17 +18,27 @@ const render = (reactElement, container?: Node) => {
 
   if (isObservable(reactElement)) {
     const subject = new Subject<Element>();
-    subject.pipe(startWith(null), pairwise()).subscribe(([prev, current]) => {
-      if (current && prev) {
-        prev.replaceWith(current);
-      } else {
-        if (prev) prev.remove();
-        if (current) container.appendChild(current);
-      }
-    });
+    subject
+      .pipe(
+        startWith(null),
+        pairwise(),
+        filter(([prev, current]) => !(prev && current?.outerHTML && current.outerHTML === prev.outerHTML)),
+        map(([_, current]) => current),
+        startWith(null),
+        pairwise()
+      )
+      .subscribe(([prev, current]) => {
+        if (current && prev) {
+          prev.replaceWith(current);
+        } else {
+          if (prev) prev.remove();
+          if (current) container.appendChild(current);
+        }
+      });
     reactElement.subscribe(element => {
       subject.next(render(element));
     });
+
     return;
   }
 
@@ -37,8 +47,12 @@ const render = (reactElement, container?: Node) => {
   const newDOMelement = document.createElement(reactElement.tag);
   if (reactElement.props) {
     Object.keys(reactElement.props)
-      .filter(el => el !== 'children')
+      .filter(el => !['children', 'style'].includes(el))
       .forEach(key => (newDOMelement[key.toLowerCase()] = reactElement.props[key]));
+  }
+
+  if (reactElement.props.style) {
+    Object.entries(reactElement.props.style).forEach(([key, value]) => (newDOMelement.style[key] = value));
   }
   if (reactElement.props.children) {
     reactElement.props.children.forEach(child => render(child, newDOMelement));
@@ -56,6 +70,7 @@ function useRxState<State>(initialState: State): [Observable<State>, (callbackFn
 
 const App = () => {
   const [state, updateState] = useRxState(0);
+  const [color, updateColor] = useRxState('green');
   return (
     <div>
       <h1>Na szevasz</h1>
@@ -65,6 +80,7 @@ const App = () => {
         <button onClick={() => updateState(state => state + 1)}>+1</button>
       </div>
       {state.pipe(
+        tap(state => state > 3 && updateColor(_ => 'tomato')),
         map(
           state =>
             state > 5 &&
@@ -79,7 +95,7 @@ const App = () => {
         )
       )}
       <div className="input">
-        <input onChange={e => console.log('buzika')} />
+        {color.pipe(map(color => <input onChange={_ => updateColor(_ => 'yellowgreen')} style={{ background: color }} />))}
       </div>
     </div>
   );
