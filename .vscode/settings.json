@@ -3,4 +3,5 @@
   "[ts,tsx]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
+  ,"prettier.printWidth": 120
 }
