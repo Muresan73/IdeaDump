@@ -1,6 +1,6 @@
 import { Observable, BehaviorSubject, isObservable, Subject } from 'rxjs';
 import { first, map, startWith, pairwise, filter, tap } from 'rxjs/operators';
-import { asyncType } from './type';
+import { asyncPropType } from './type';
 
 export const React = {
   createElement: (tag, props, ...children) => {
@@ -22,7 +22,7 @@ const mapProps2Element = (props, targetDOMelement) => {
     props.children.forEach(child => render(child, targetDOMelement));
   }
   if (props.asyncProps) {
-    Object.entries(props.asyncProps as asyncType<unknown>).forEach(([key, asyncProps]) =>
+    Object.entries(props.asyncProps as asyncPropType<unknown>).forEach(([key, asyncProps]) =>
       asyncProps.subscribe(attributes => mapProps2Element({ [key]: attributes }, targetDOMelement))
     );
   }
