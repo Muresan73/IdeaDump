@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
     <defs>
         <filter id="shadow" height="200%" width="200%">
-            <feFlood flood-color="black" flood-opacity="0.85"/>
+            <feFlood flood-color="black" flood-opacity=".5"/>
             <feComposite in2="SourceGraphic" operator="in"/>
             <feComposite in2="SourceGraphic" operator="over" result="firstfilter"/>
         </filter>
