@@ -53,7 +53,18 @@ module.exports = {
           // Compiles Sass to CSS
           'sass-loader'
         ]
-      }
+      },
+      {
+        test: /\.(png|jpe?g|gif|webp)$/i,
+        loader: 'file-loader',
+        options: {
+          name: '[path][name].[ext]'
+        }
+      },
+      {
+        test: /\.svg$/,
+        use: ['@svgr/webpack'],
+      },
     ]
   },
 

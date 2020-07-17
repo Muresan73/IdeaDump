@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import useSwitch from './hooks/switch';
 
 interface SizeProp {
   size: string;
@@ -68,3 +69,17 @@ export const NeomorphButton = (props: SizeProp) => (
     ></Ring>
   </OuterPart>
 );
+
+export const NeomorphToggle = (props: unknown) => {
+  const [switchState, setToggleState] = useSwitch(false);
+  console.log(switchState);
+  return (
+    <NeomorphButton
+      size="100px"
+      color="#eee"
+      ringcolor={switchState ? 'tomato' : 'greenyellow'}
+      ringClickColor="inherit"
+      onClick={setToggleState}
+    ></NeomorphButton>
+  );
+};

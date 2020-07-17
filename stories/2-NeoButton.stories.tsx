@@ -1,18 +1,16 @@
 import * as React from 'react';
-import { Hello } from '../src/visual-components/Hello';
-import { NeomorphButton } from '../src/visual-components/neomorphButton';
+import { NeomorphButton, NeomorphToggle } from '../src/visual-components/neomorphButton';
 import { addons } from '@storybook/addons';
 import { themes } from '@storybook/theming';
 import styled from 'styled-components';
-import { NeomorphSwitch } from '../src/visual-components/neomorphSwitch';
 
 addons.setConfig({
   theme: themes.dark
 });
 
 export default {
-  title: 'Hello',
-  component: Hello
+  title: 'NeoButton',
+  component: NeomorphButton
 };
 
 const BackPlate = styled.div`
@@ -39,8 +37,8 @@ export const ButtonPink = () => (
     <NeomorphButton size="100px" color="#eee" ringcolor="deeppink" ringClickColor="greenyellow"></NeomorphButton>
   </BackPlate>
 );
-export const Switch = () => (
+export const Toggle = () => (
   <BackPlate color="#eee">
-    <NeomorphSwitch></NeomorphSwitch>
+    <NeomorphToggle/>
   </BackPlate>
 );
