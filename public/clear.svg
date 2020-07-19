@@ -12,7 +12,7 @@
         </filter>
         <filter id="inner"/>
     </defs>
-    <path d="M-2 -2 L -2 -2 M 18 18 L 6 6 M 18 6 L 6 18" stroke-linecap="round" stroke="#0002" filter="url(#shadow)" stroke-width="4"/>
-    <path d="M-2 -2 L -2 -2 M 18 18 L 6 6 M 18 6 L 6 18" stroke-linecap="round" filter="url(#innershadow)" stroke-width="3"/>
+    <path d="M-5 -5 L -5 24 M 18 18 L 6 6 M 18 6 L 6 18" stroke-linecap="round" stroke="#0002" filter="url(#shadow)" stroke-width="4"/>
+    <path d="M-5 -5 L -5 24 M 18 18 L 6 6 M 18 6 L 6 18"  filter="url(#innershadow)"/>
     <!-- <path d="M-2 -2 L -2 -2 M 18 18 L 6 6 M 18 6 L 6 18" stroke-linecap="round" stroke-width="2"/> -->
 </svg>

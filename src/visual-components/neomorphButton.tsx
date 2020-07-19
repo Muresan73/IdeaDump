@@ -94,8 +94,14 @@ export const RoundButton = styled.button`
   box-shadow: -1px -1px 3px 1px #fffa, 1px 1px 7px #000a, inset 20px 20px 30px -30px #0009;
   border: 2px solid rgba(0, 0, 0, 0.1);
   &:active {
-    box-shadow: -1px -1px 3px 1px #fffa, 1px 1px 3px #000a, inset 10px 10px 30px -10px #0009;
+    box-shadow: -1px -1px 3px 1px #fffa, 1px 1px 7px #000a, inset 10px 10px 30px -10px #0009;
+    svg {
+      transform: scale(0.97);
+    }
   }
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 // export const NeomorphRoundButton = (props: unknown) => {

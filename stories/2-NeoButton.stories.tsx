@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { NeomorphButton, NeomorphToggle ,RoundButton} from '../src/visual-components/neomorphButton';
+import { NeomorphButton, NeomorphToggle, RoundButton } from '../src/visual-components/neomorphButton';
 import { addons } from '@storybook/addons';
 import { themes } from '@storybook/theming';
 import styled, { ThemeProvider, DefaultTheme } from 'styled-components';
+import Clear from '../public/clear.svg';
 
 addons.setConfig({
   theme: themes.dark
@@ -39,10 +40,9 @@ export const ButtonPink = () => (
 );
 export const Toggle = () => (
   <BackPlate color="#eee">
-    <NeomorphToggle/>
+    <NeomorphToggle />
   </BackPlate>
 );
-
 
 const theme: DefaultTheme = {
   borderRadius: '5px',
@@ -50,13 +50,19 @@ const theme: DefaultTheme = {
     main: 'cornflowerblue',
     secondary: 'magenta',
     backplate: '#ddd'
-  },
-}
+  }
+};
 
+const ClearIcon = styled(Clear)`
+  stroke: #fff4;
+  stroke-linecap: round;
+`;
 export const Round = () => (
   <ThemeProvider theme={theme}>
-  <BackPlate color="#ddd">
-    <RoundButton size='50px'/>
-  </BackPlate>
+    <BackPlate color="#ddd">
+      <RoundButton size="50px">
+        <ClearIcon />
+      </RoundButton>
+    </BackPlate>
   </ThemeProvider>
 );

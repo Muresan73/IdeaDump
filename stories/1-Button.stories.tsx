@@ -1,12 +1,6 @@
 import * as React from 'react';
 import { action } from '@storybook/addon-actions';
 import { Button } from '@storybook/react/demo';
-import { Glass, MattLayer } from '../src/visual-components/neomorphBlur';
-import styled, { DefaultTheme, ThemeProvider } from 'styled-components';
-
-import color from './color.webp';
-import forest from './forest.jpeg';
-import noise from './noise.png';
 
 export default {
   title: 'Button',
@@ -22,4 +16,3 @@ export const Emoji = () => (
     </span>
   </Button>
 );
-
