@@ -29,10 +29,12 @@ const Thumb = styled.div`
 `;
 
 const ClearIcon = styled(Clear)`
-  stroke: ${props => props.theme.colors.main};
+  stroke: ${props => props.theme.colors.backplate};
 `;
 const DoneIcon = styled(Done)`
   stroke: ${props => props.theme.colors.main};
+  stroke-width: 3;
+  stroke-linecap:round;
 `;
 
 export const NeomorphSwitch = (props: unknown) => {

@@ -83,3 +83,19 @@ export const NeomorphToggle = (props: unknown) => {
     ></NeomorphButton>
   );
 };
+
+type RoundProps = { size: string };
+export const RoundButton = styled.button`
+  outline: none;
+  background: ${props => props.theme.colors.main};
+  width: ${(props: RoundProps) => props.size};
+  height: ${(props: RoundProps) => props.size};
+  border-radius: 50%;
+  box-shadow: -1px -1px 3px 1px #fffa, 1px 1px 7px #000a, inset 20px 20px 30px -30px #0009;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  &:active {
+    box-shadow: -1px -1px 3px 1px #fffa, 1px 1px 3px #000a, inset 10px 10px 30px -10px #0009;
+  }
+`;
+
+// export const NeomorphRoundButton = (props: unknown) => {

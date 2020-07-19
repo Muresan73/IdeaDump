@@ -1,34 +1,24 @@
 <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
-<defs>
+    <defs>
         <filter id="shadow" height="200%" width="200%">
-            <feFlood flood-color="black" flood-opacity="0.85"/>
+            <feFlood flood-color="black" flood-opacity="0.95"/>
             <feComposite in2="SourceGraphic" operator="in"/>
             <feComposite in2="SourceGraphic" operator="over" result="firstfilter"/>
-            <feOffset dy="-3"></feOffset>
+            <feOffset dy="-3"/>
         </filter>
         <filter id="innershadow" height="200%" width="200%">
             <feGaussianBlur in="SourceGraphic" stdDeviation="1" result="blur"/>
             <feComposite in2="firstfilter" operator="over"/>
-            <feOffset dy="-3" dx=".1"></feOffset>
+            <feOffset dy="-3" dx=".1"/>
         </filter>
         <filter id="offset">
-            <feOffset dy="-3"></feOffset>
+            <feOffset dy="-3"/>
         </filter>
     </defs>
-    <!-- <path d="M0 0h24v24H0z" stroke="red" fill="none"/> -->
-    <!-- <path d="M3 3h18v18H3z" stroke="red" fill="none"/> -->
-    <!-- <path d="M3 15 L9 21" stroke="red" fill="none"/>
-    <path d="M21 9 L9 21" stroke="red" fill="none"/>
-    <path d="M0 8h24" stroke="red" fill="none"/>
-    <path d="M8 0v24" stroke="red" fill="none"/>
-    <path d="M0 16h24" stroke="red" fill="none"/>
-    <path d="M16 0v24" stroke="red" fill="none"/>
-    <path d="M0 9h24" stroke="blue" fill="none"/>
-    <path d="M9 0v24" stroke="blue" fill="none"/>
-    <path d="M0 15h24" stroke="blue" fill="none"/>
-    <path d="M15 0v24" stroke="blue" fill="none"/>
-    <circle cx="12" cy="12" r="9" stroke="black" stroke-width="1" fill="none" /> -->
-    <path d="M-2 -2 L -2 -2 M 4 16 L 9 21 L 19 11" stroke-linecap="round" stroke="lightgray" filter="url(#shadow)" stroke-width="4" fill='none'/>
-    <path d="M-2 -2 L -2 -2 M 4 16 L 9 21 L 19 11" stroke-linecap="round" stroke="cyan" filter="url(#innershadow)" stroke-width="3" fill='none'/>
-    <path d="M-2 -2 L -2 -2 M 4 16 L 9 21 L 19 11" stroke-linecap="round" stroke="cyan" filter="url(#offset)" stroke-width="2" fill='none'/>
+    <!--<path d="M0 0h24v24H0z" stroke="red" fill="none"/>-->
+    <!--<path d="M3 3h18v18H3z" stroke="red" fill="none"/>-->
+    <!--<path d="M3 15 L9 21" stroke="red" fill="none"/> <path d="M21 9 L9 21" stroke="red" fill="none"/> <path d="M0 8h24" stroke="red" fill="none"/> <path d="M8 0v24" stroke="red" fill="none"/> <path d="M0 16h24" stroke="red" fill="none"/> <path d="M16 0v24" stroke="red" fill="none"/> <path d="M0 9h24" stroke="blue" fill="none"/> <path d="M9 0v24" stroke="blue" fill="none"/> <path d="M0 15h24" stroke="blue" fill="none"/> <path d="M15 0v24" stroke="blue" fill="none"/> <circle cx="12" cy="12" r="9" stroke="black" stroke-width="1" fill="none" />-->
+    <path d="M-5 -5 L -5 24 M 4 16 L 9 21 L 19 11" stroke-linecap="round" stroke="#0002" filter="url(#shadow)" stroke-width="4" fill="none"/>
+    <path d="M-5 -5 L -5 24 M 4 16 L 9 21 L 19 11"  filter="url(#innershadow)"  fill="none"/>
+    <!-- <path d="M-2 -2 L -2 24 M 4 16 L 9 21 L 19 11" stroke-linecap="round" filter="url(#offset)" stroke-width="2" fill="none"/> -->
 </svg>
