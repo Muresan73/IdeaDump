@@ -25,7 +25,7 @@ const Thumb = styled.div`
   border-radius: 12px;
   transform: translateX(${(props: ThumbProps) => (props.isActive ? 30 : 0)}px);
   transition: transform 0.2s ease-in-out;
-  box-shadow: 1px 1px 2px 1px #0003;
+  box-shadow: 1px 1px 2px 1px #0003, 1px 1px 1px ${props => props.theme.colors.backplate};
 `;
 
 const ClearIcon = styled(Clear)`

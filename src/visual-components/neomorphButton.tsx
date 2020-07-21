@@ -104,4 +104,21 @@ export const RoundButton = styled.button`
   justify-content: center;
 `;
 
+type LayerProps = { width: string; height: string; background: string };
+export const PlateButton = styled.button`
+  outline: none;
+  width: ${(props: LayerProps) => props.width};
+  height: ${(props: LayerProps) => props.height};
+  background: ${(props: LayerProps) => props.background};
+  border: 0;
+  border-radius: 25%;
+  box-shadow: 0 0 1px 1px #fff5, 2px 2px 2px 1px #0005, 1px 1px 0px 1px ${(props: LayerProps) => props.background};
+  &:active {
+    box-shadow: 0 0 1px #000;
+    transform: translate(2px, 2px);
+    svg {
+      transform: scale(0.97);
+    }
+  }
+`;
 // export const NeomorphRoundButton = (props: unknown) => {
