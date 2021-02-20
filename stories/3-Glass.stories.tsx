@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Glass, MattLayer, Plate,GlowPlate } from '../src/visual-components/neomorphBlur';
+import { Glass, MattLayer, Plate,GlowPlate, GlassElement, GlassText } from '../src/visual-components/neomorphBlur';
 import styled from 'styled-components';
 
 import color from '../public/color.webp';
@@ -94,7 +94,11 @@ export const Forms = () => (
         <Plate width="50px" height="50px" background="tomato" style={{ margin: '20px' }}>
           <Dot width="25px" height="25px" background="blue" />
         </Plate>
-        <Plate width="50px" height="50px" background="tomato" style={{ margin: '20px' }} />
+        <GlassElement width="150px" height="50px" background="#f5dab1" style={{ margin: '20px' }}>
+          <GlassText>
+            Hello
+          </GlassText>
+        </GlassElement>
         <PlateButton width="50px" height="50px" background="tomato" style={{ margin: '0 20px' }} />
       </MattLayer>
       <MattLayer width="200px" height="300px" background="aliceblue">
@@ -110,4 +114,15 @@ export const Forms = () => (
       />
     </MattLayer>
   </BlackPlate>
+);
+
+export const GlassTile = () => (
+      
+      <MattLayer width="200px" height="300px" background="blanchedalmond" style={{ display: 'flex', flexFlow: 'column', justifyContent: 'space-around', alignItems: 'center' }}>
+        <GlassElement width="150px" height="50px" background="#f5dab1" style={{ margin: '50px 20px' }}>
+          <GlassText>
+            Hello
+          </GlassText>
+        </GlassElement>
+      </MattLayer>
 );
