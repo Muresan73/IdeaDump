@@ -7,13 +7,6 @@ type Action = 'click1' | 'click2';
 type Sausage<State> = Observable<[Action, State]>;
 type Pipe<State> = (emitter: Sausage<State>) => Sausage<Partial<State>>;
 
-// type Function1<T>=(arg: T) => T;
-// function pipeOperator<T>(...fns: (Function1<T>)[]): Function1<T> {
-//   return fns.reduceRight((f, g) => (args: T) => f(g(args)));
-// }
-
-const plumbing = <State,>(pipes: Pipe<State>[]): Pipe<State> => (seed: Sausage<State>) =>
-  merge(...pipes.map(pipe => pipe(seed)));
 
 function usePiper<State>(initialState: State, pipeLine: Pipe<State>[]): [State, (action: Action) => void] {
   const [currentState, setState] = useState(initialState);
@@ -39,6 +32,9 @@ function usePiper<State>(initialState: State, pipeLine: Pipe<State>[]): [State, 
 }
 
 // --------------   Component   --------------
+stateObservalbe
+actionObservable
+combineLatest(stateObservalbe, actionObservable);
 
 const initalState = { c1: true, c2: false };
 const clickPipes: Pipe<typeof initalState> = 
@@ -66,7 +62,7 @@ const clickPipes: Pipe<typeof initalState> =
   }
 ;
 
-export const PipePiperDemo = () => {
+export const Rxpiper = () => {
   const [state, dispatch] = usePiper(initalState, clickPipes);
   return (
     <div>
